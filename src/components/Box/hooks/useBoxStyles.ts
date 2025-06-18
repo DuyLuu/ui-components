@@ -2,99 +2,70 @@
  * useBoxStyles - Hook for generating Box component styles
  */
 
-import { useMemo } from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
-import { useTheme, ColorKey, SpacingKey } from '../../../theme/mock-theme';
+import { StyleSheet } from 'react-native';
+import { mockTheme, useTheme } from '../../../theme/mock-theme';
+import { BoxStyleProps } from '../../../types/components';
 
-interface BoxStyleProps {
-  backgroundColor?: ColorKey;
-  borderColor?: ColorKey;
-  padding?: SpacingKey;
-  margin?: SpacingKey;
-  paddingHorizontal?: SpacingKey;
-  paddingVertical?: SpacingKey;
-  marginHorizontal?: SpacingKey;
-  marginVertical?: SpacingKey;
-  flex?: number;
-  flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
-  justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-  alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
-  center?: boolean;
-  row?: boolean;
-  column?: boolean;
-}
-
-export const useBoxStyles = (props: BoxStyleProps) => {
+export const useBoxStyles = ({
+  flex,
+  flexDirection,
+  justifyContent,
+  alignItems,
+  alignSelf,
+  padding,
+  paddingHorizontal,
+  paddingVertical,
+  paddingTop,
+  paddingBottom,
+  paddingLeft,
+  paddingRight,
+  margin,
+  marginHorizontal,
+  marginVertical,
+  marginTop,
+  marginBottom,
+  marginLeft,
+  marginRight,
+  backgroundColor,
+  borderColor,
+  center,
+  row,
+  column,
+  shadow,
+}: BoxStyleProps) => {
   const theme = useTheme();
+  const { spacing, colors } = theme;
 
-  return useMemo(() => {
-    const styles: ViewStyle = {};
-
-    // Layout props
-    if (props.flex !== undefined) {
-      styles.flex = props.flex;
+  return StyleSheet.create({
+    box: {
+      flex: flex,
+      flexDirection: row ? 'row' : column ? 'column' : flexDirection,
+      justifyContent: center ? 'center' : justifyContent,
+      alignItems: center ? 'center' : alignItems,
+      alignSelf: alignSelf,
+      padding: padding ? spacing[padding as keyof typeof spacing] : undefined,
+      paddingHorizontal: paddingHorizontal ? spacing[paddingHorizontal as keyof typeof spacing] : undefined,
+      paddingVertical: paddingVertical ? spacing[paddingVertical as keyof typeof spacing] : undefined,
+      paddingTop: paddingTop ? spacing[paddingTop as keyof typeof spacing] : undefined,
+      paddingBottom: paddingBottom ? spacing[paddingBottom as keyof typeof spacing] : undefined,
+      paddingLeft: paddingLeft ? spacing[paddingLeft as keyof typeof spacing] : undefined,
+      paddingRight: paddingRight ? spacing[paddingRight as keyof typeof spacing] : undefined,
+      margin: margin ? spacing[margin as keyof typeof spacing] : undefined,
+      marginHorizontal: marginHorizontal ? spacing[marginHorizontal as keyof typeof spacing] : undefined,
+      marginVertical: marginVertical ? spacing[marginVertical as keyof typeof spacing] : undefined,
+      marginTop: marginTop ? spacing[marginTop as keyof typeof spacing] : undefined,
+      marginBottom: marginBottom ? spacing[marginBottom as keyof typeof spacing] : undefined,
+      marginLeft: marginLeft ? spacing[marginLeft as keyof typeof spacing] : undefined,
+      marginRight: marginRight ? spacing[marginRight as keyof typeof spacing] : undefined,
+      backgroundColor: backgroundColor ? colors[backgroundColor as keyof typeof colors] : undefined,
+      borderColor: borderColor ? colors[borderColor as keyof typeof colors] : undefined,
+      ...(shadow ? {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 3,
+      } : {})
     }
-
-    if (props.flexDirection) {
-      styles.flexDirection = props.flexDirection;
-    }
-
-    if (props.justifyContent) {
-      styles.justifyContent = props.justifyContent;
-    }
-
-    if (props.alignItems) {
-      styles.alignItems = props.alignItems;
-    }
-
-    // Convenience props
-    if (props.center) {
-      styles.justifyContent = 'center';
-      styles.alignItems = 'center';
-    }
-
-    if (props.row) {
-      styles.flexDirection = 'row';
-    }
-
-    if (props.column) {
-      styles.flexDirection = 'column';
-    }
-
-    // Spacing props
-    if (props.padding) {
-      styles.padding = theme.spacing[props.padding];
-    }
-
-    if (props.margin) {
-      styles.margin = theme.spacing[props.margin];
-    }
-
-    if (props.paddingHorizontal) {
-      styles.paddingHorizontal = theme.spacing[props.paddingHorizontal];
-    }
-
-    if (props.paddingVertical) {
-      styles.paddingVertical = theme.spacing[props.paddingVertical];
-    }
-
-    if (props.marginHorizontal) {
-      styles.marginHorizontal = theme.spacing[props.marginHorizontal];
-    }
-
-    if (props.marginVertical) {
-      styles.marginVertical = theme.spacing[props.marginVertical];
-    }
-
-    // Color props
-    if (props.backgroundColor) {
-      styles.backgroundColor = theme.colors[props.backgroundColor];
-    }
-
-    if (props.borderColor) {
-      styles.borderColor = theme.colors[props.borderColor];
-    }
-
-    return StyleSheet.create({ container: styles }).container;
-  }, [theme, props]);
+  }).box;
 }; 

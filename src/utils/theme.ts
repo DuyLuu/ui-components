@@ -25,7 +25,7 @@ export const getThemeValue = <T>(
   if (!key || !(key in themeObject)) {
     return fallback;
   }
-  return themeObject[key];
+  return themeObject[key] as T;
 };
 
 // Responsive utility placeholder (can be enhanced later)

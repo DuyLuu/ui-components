@@ -47,6 +47,9 @@ export interface BoxProps extends ViewProps, PropsWithChildren, BaseComponentPro
   shadow?: boolean;
 }
 
+// BoxStyleProps is used by the useBoxStyles hook
+export type BoxStyleProps = Omit<BoxProps, keyof BaseComponentProps | 'children' | 'style'>;
+
 // Text component types
 export interface TextProps extends RNTextProps, BaseComponentProps {
   variant?: TypographyVariant;

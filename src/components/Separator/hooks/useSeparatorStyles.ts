@@ -32,10 +32,10 @@ export const useSeparatorStyles = (props: SeparatorStyleProps): ViewStyle => {
     // Orientation and sizing
     if (props.orientation === 'horizontal') {
       style.height = props.thickness;
-      style.width = props.length || '100%';
+      (style as any).width = props.length || '100%';
     } else {
       style.width = props.thickness;
-      style.height = props.length || '100%';
+      (style as any).height = props.length || '100%';
     }
 
     // Spacing

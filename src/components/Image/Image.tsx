@@ -132,7 +132,7 @@ const Image: React.FC<ImageProps> = ({
   return (
     <RNImage
       source={source}
-      style={[imageStyles, style]}
+      style={[imageStyles, style as ImageStyle]}
       resizeMode={resizeMode}
       testID={testID}
       onLoadStart={handleLoadStart}

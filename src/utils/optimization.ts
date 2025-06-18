@@ -29,5 +29,5 @@ export const mergeStyles = (
   baseStyle: ViewStyle | TextStyle,
   ...additionalStyles: (ViewStyle | TextStyle | undefined | null | false)[]
 ): ViewStyle | TextStyle => {
-  return [baseStyle, ...additionalStyles.filter(Boolean)];
+  return [baseStyle, ...additionalStyles.filter(Boolean)] as ViewStyle | TextStyle;
 }; 

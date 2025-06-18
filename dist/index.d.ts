@@ -1,5 +1,5 @@
 /**
- * @luubui/ui-components
+ * @duyluu/ui-components
  *
  * Foundational UI components for React Native applications
  */
