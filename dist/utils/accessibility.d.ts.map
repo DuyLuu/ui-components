@@ -1,0 +1,1 @@
+{"version":3,"file":"accessibility.d.ts","sourceRoot":"","sources":["../../src/utils/accessibility.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,OAAO,EAAE,kBAAkB,EAAE,MAAM,cAAc,CAAC;AAElD,eAAO,MAAM,wBAAwB,GACnC,QAAQ,MAAM,EACd,OAAO,MAAM,EACb,OAAO,MAAM,KACZ,kBAKD,CAAC;AAEH,eAAO,MAAM,uBAAuB,GAClC,WAAW,kBAAkB,EAC7B,eAAe,kBAAkB,KAChC,kBAGD,CAAC;AAEH,eAAO,MAAM,oBAAoB,QAAO,kBAGtC,CAAC"}
